@@ -6,6 +6,9 @@ const routes = [
     name: "Users",
     component: Users,
     redirect: "/users/list",
+    meta: {
+      hasAutentication: true,
+    },
     children: [
       {
         path: "Users",

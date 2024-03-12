@@ -13,10 +13,18 @@
         </a>
         <div class="flex items-center lg:order-2">
           <router-link
-            :to="({ name: 'Login' })"
+          v-if="!logado"
+            :to="{ name: 'Login' }"
             class="text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"
             >Entrar</router-link
           >
+          <button
+          v-if="logado"
+            @click="logout"
+            class="text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"
+          >
+            Sair
+          </button>
           <button
             data-collapse-toggle="mobile-menu-2"
             type="button"
@@ -99,9 +107,23 @@
 
 <script setup lang="ts">
 import Images from "@/images";
-import { defineComponent } from "vue";
+import { defineComponent, onMounted, ref } from "vue";
+import router from "@/router";
+
+let logado = ref(false);
 
 defineComponent({
   name: "AppHeader",
+});
+
+function logout() {
+  localStorage.removeItem("token");
+  location.reload();
+}
+
+onMounted(() => {
+  if (localStorage.getItem("token")) {
+    logado.value = true;
+  }
 });
 </script>

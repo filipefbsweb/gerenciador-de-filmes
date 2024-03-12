@@ -22,6 +22,6 @@ defineComponent({
 defineProps({
   titleMovie: String,
   imageMovie: String,
-  idMovie: Number,
+  idMovie: String,
 });
 </script>

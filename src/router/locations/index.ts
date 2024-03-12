@@ -6,6 +6,9 @@ const routes = [
         name: "Locations",
         component: Locations,
         redirect: "/logged/locations/list",
+        meta: {
+            hasAutentication: true,
+        },
         children: [
             {
                 path: "list",

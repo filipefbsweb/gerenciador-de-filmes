@@ -65,6 +65,7 @@ function verifyUserLocal() {
       userItem.status == 1
   );
   if (users != undefined) {
+    localStorage.setItem("userLogged", JSON.stringify(users));
     localStorage.setItem("token", JSON.stringify({ token: "12345" }));
     location.reload();
   } else {

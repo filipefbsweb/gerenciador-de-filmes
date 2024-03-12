@@ -13,55 +13,47 @@
         </a>
         <div class="flex items-center lg:order-2">
           <router-link
-          v-if="!logado"
+            v-if="!logado"
             :to="{ name: 'Login' }"
             class="text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"
             >Entrar</router-link
           >
           <button
-          v-if="logado"
+            v-if="logado"
             @click="logout"
             class="text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"
           >
             Sair
           </button>
           <button
-            data-collapse-toggle="mobile-menu-2"
+            data-collapse-toggle="navbar-default"
             type="button"
-            class="inline-flex items-center p-2 ml-1 text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-            aria-controls="mobile-menu-2"
+            class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+            aria-controls="navbar-default"
             aria-expanded="false"
+            @click="showMenuMobile = !showMenuMobile"
           >
-            <span class="sr-only">Menu mobile</span>
+            <span class="sr-only">Open main menu</span>
             <svg
-              class="w-6 h-6"
-              fill="currentColor"
-              viewBox="0 0 20 20"
+              class="w-5 h-5"
+              aria-hidden="true"
               xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 17 14"
             >
               <path
-                fill-rule="evenodd"
-                d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-                clip-rule="evenodd"
-              ></path>
-            </svg>
-            <svg
-              class="hidden w-6 h-6"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                clip-rule="evenodd"
-              ></path>
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M1 1h15M1 7h15M1 13h15"
+              />
             </svg>
           </button>
         </div>
         <div
-          class="hidden justify-between items-center w-full lg:flex lg:w-auto lg:order-1"
-          id="mobile-menu-2"
+          class="justify-between items-center w-full lg:flex lg:w-auto lg:order-1"
+          :class="!showMenuMobile ? 'hidden' : ''"
         >
           <ul
             class="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0"
@@ -107,10 +99,11 @@
 
 <script setup lang="ts">
 import Images from "@/images";
-import { defineComponent, onMounted, ref } from "vue";
 import router from "@/router";
+import { defineComponent, onMounted, ref } from "vue";
 
 let logado = ref(false);
+let showMenuMobile = ref(false);
 
 defineComponent({
   name: "AppHeader",

@@ -1,6 +1,6 @@
 # GF Filmes
 # Gerenciador de filmes para locadora
-# Projeto usando Vuejs 3
+# Projeto usando Vuejs 3 e Tailwind CSS
 
 ## Para baixar todos os pocotes
 ```
